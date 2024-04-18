@@ -1,0 +1,54 @@
+body{
+	overflow-x: hidden;
+}
+
+
+
+.navmanu{
+
+font-family: 'Roboto', sans-serif;
+}
+.hrline{
+	width: 15rem;
+	height: 2px;
+	background: rgb(170, 166, 166);
+	margin-top: 10px;
+	}
+	.project-menu-section  {
+		position: relative;
+	}
+	.project-menu-section li .li-box{
+width: 100%;
+	}
+	.project-menu-section li .project-dropdown{
+		width: 70%;
+		display: flex;
+		flex-wrap: wrap;
+		position: absolute;
+		top: 0;
+		left: 33%;
+		visibility: hidden;
+	}
+	/* .project-menu-section li .project-dropdown-show{
+		width: 70%;
+		display: flex;
+		flex-wrap: wrap;
+		position: absolute;
+		top: 0;
+		left: 33%;
+		visibility: visible;
+	} */
+
+	.project-menu-section li .project-dropdown li{
+		width: 22%;
+	}
+	/* .project-menu-section li .project-dropdown-show li{
+		width: 22%;
+	} */
+	.project-menu-section li:hover .project-dropdown{
+		visibility: visible;
+	}
+	/* .project-menu-section li:hover .project-dropdown-show{
+		visibility: hidden;
+	} */
+	
