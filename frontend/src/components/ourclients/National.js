@@ -31,20 +31,6 @@ const National = () => {
       link: "/pp",
     },
     {
-      name: "Larsen and Tubro Ltd",
-
-      photo: larsen,
-      desc: "Structural Steel Fabrication, erection work of conveyor gallarey, Insert plates etc.",
-    },
-    {
-      name: "Larsen and Tubro Ltd",
-
-      photo: larsen,
-      desc: "Structural Steel Fabrication, erection work of conveyor gallarey, Insert plates etc.",
-
-      link: "/pp",
-    },
-    {
       name: "Hazi Baba ",
 
       photo: sree,

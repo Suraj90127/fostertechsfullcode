@@ -115,15 +115,15 @@ const Products = () => {
                       >
                         <div className="lg:ml-10 sm:ml-5 mt-10">
                           <ul className="lg:text-xl sm:text-sm font-semibold gap-10 leading-loose">
-                            <li>{p.title1}</li>
-                            <li>{p.title2}</li>
-                            <li>{p.title3}</li>
-                            <li>{p.title4}</li>
-                            <li>{p.title5}</li>
-                            <li>{p.title6}</li>
-                            <li>{p.title7}</li>
-                            <li>{p.title8}</li>
-                            <li>{p.title9}</li>
+                            <li>{p.type1}</li>
+                            <li>{p.type2}</li>
+                            <li>{p.type3}</li>
+                            <li>{p.type4}</li>
+                            <li>{p.type5}</li>
+                            <li>{p.type6}</li>
+                            <li>{p.type7}</li>
+                            <li>{p.type8}</li>
+                            <li>{p.type9}</li>
                           </ul>
                         </div>
                         <div className="relative flex overflow-hidden text-center items-center justify-center"></div>

@@ -175,7 +175,7 @@ const Nabvar = () => {
                                           {mysublimks.Head}
                                         </h2>
                                         <p className="text-gray-500">
-                                          Lorem ipsum dolor sit project.
+                                          {mysublimks.text}
                                         </p>
                                       </span>
                                       <span className="mt-5 text-2xl font-normal">

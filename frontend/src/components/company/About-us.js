@@ -8,13 +8,14 @@ import companypro from "../../assets/image/companypro.jpg";
 import profile from "../../assets/image/profile.jpg";
 import history from "../../assets/image/history.jpg";
 import vission from "../../assets/image/vission.jpg";
+import { team } from "../../utils/TeamData";
 
 const Ourbusiness = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const data = [
+  const officeaddress = [
     {
       id: 1,
       title: "Abu Dhabi",
@@ -116,140 +117,140 @@ const Ourbusiness = () => {
     },
   ];
 
-  const people = [
-    {
-      name: "Mr. Rakesh Kumar Gupta ",
-      role: "Offshore Structural Department/(Senior Consultant)",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Faisel Tufel      ",
-      role: "Lead Engineer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Divey Mahajan",
-      role: " Lead Engineer ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Mr. Sunil Kumar Prasad      ",
-      role: "Drafting Lead ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Shadab Ahmad      ",
-      role: "Senior Engineer",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Ravi Singh ",
-      role: "Engineer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Mayyur Rao      ",
-      role: "Engineer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "External    ",
-      role: "Senior Engineer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "External  ",
-      role: " Engineer   ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Asif Ali      ",
-      role: " Senior Engineer   ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Maaz Beg      ",
-      role: "Engineer   ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Juned Malik      ",
-      role: "Engineer   ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "(External        ",
-      role: "Senior Engineer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "External        ",
-      role: "Engineer   ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "2D Drafting      ",
-      role: "Engineer   ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Md. Arshad    ",
-      role: " Senior Designer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Praveen Singh      ",
-      role: "  Designer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Mathiazhgan Murugesan      ",
-      role: "  Designer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Aryan Rawat      ",
-      role: "  Designer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "3D Modelling      ",
-      role: "  Designer      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Md. Arshad      ",
-      role: "  Senior Modeller      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Mathiazhgan Murugesan      ",
-      role: "  Modeller      ",
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-  ];
+  // const team = [
+  //   {
+  //     name: "Mr. Rakesh Kumar Gupta ",
+  //     role: "Offshore Structural Department/(Senior Consultant)",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Faisel Tufel      ",
+  //     role: "Lead Engineer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Divey Mahajan",
+  //     role: " Lead Engineer ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Mr. Sunil Kumar Prasad      ",
+  //     role: "Drafting Lead ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Shadab Ahmad      ",
+  //     role: "Senior Engineer",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Ravi Singh ",
+  //     role: "Engineer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Mayyur Rao      ",
+  //     role: "Engineer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "External    ",
+  //     role: "Senior Engineer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "External  ",
+  //     role: " Engineer   ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Asif Ali      ",
+  //     role: " Senior Engineer   ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Maaz Beg      ",
+  //     role: "Engineer   ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Juned Malik      ",
+  //     role: "Engineer   ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "(External        ",
+  //     role: "Senior Engineer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "External        ",
+  //     role: "Engineer   ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "2D Drafting      ",
+  //     role: "Engineer   ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Md. Arshad    ",
+  //     role: " Senior Designer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Praveen Singh      ",
+  //     role: "  Designer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Mathiazhgan Murugesan      ",
+  //     role: "  Designer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Aryan Rawat      ",
+  //     role: "  Designer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "3D Modelling      ",
+  //     role: "  Designer      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Md. Arshad      ",
+  //     role: "  Senior Modeller      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  //   {
+  //     name: "Mathiazhgan Murugesan      ",
+  //     role: "  Modeller      ",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   },
+  // ];
 
   const [selected, setSelected] = useState(null);
   const toggle = (i) => {
@@ -598,7 +599,7 @@ const Ourbusiness = () => {
                         role="list"
                         className="grid gap-x-8 gap-y-12 sm:grid-cols-1 lg:grid-cols-3  lg:col-span-3 sm:gap-y-16 xl:col-span-3 lg:ml-20"
                       >
-                        {people.map((person) => (
+                        {team.map((person) => (
                           <li key={person.name}>
                             <div className="flex items-center gap-x-6 ">
                               <img
@@ -664,7 +665,7 @@ const Ourbusiness = () => {
                           <div className="col-span-6 bg-white">
                             <div className="wrapper">
                               <div className="accordion w-full ">
-                                {data.map((item, i) => (
+                                {officeaddress.map((item, i) => (
                                   <div
                                     className={`item px-5 ${
                                       i === 0 ? "pt-5" : ""

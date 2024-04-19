@@ -1,70 +1,110 @@
-import React from "react";
+import React, { useState } from "react";
 import "./dashboard.css";
 import logo from "../../assets/image/logo_up.png";
 import { FaTools } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { GiTeamIdea } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { team } from "../../utils/TeamData";
+import { IoCloseSharp } from "react-icons/io5";
 
-const Dashboard = () => {
-  const user = [
-    {
-      name: "Rjsurya",
-      about:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, corporis. with rjsurya",
-      link: "",
-    },
-    {
-      name: "Rjsurya",
-      about:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, corporis. with rjsurya",
-      link: "",
-    },
-    {
-      name: "Rjsurya",
-      about:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, corporis. with rjsurya",
-      link: "",
-    },
-    {
-      name: "Rjsurya",
-      about:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, corporis. with rjsurya",
-      link: "",
-    },
-    {
-      name: "Rjsurya",
-      about:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, corporis. with rjsurya",
-      link: "",
-    },
-    {
-      name: "Rjsurya",
-      about:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, corporis. with rjsurya",
-      link: "",
-    },
-    {
-      name: "Rjsurya",
-      about:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, corporis. with rjsurya",
-      link: "",
-    },
-    {
-      name: "Rjsurya",
-      about:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, corporis. with rjsurya",
-      link: "",
-    },
-    {
-      name: "Rjsurya",
-      about:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, corporis. with rjsurya",
-      link: "",
-    },
-  ];
+const TeameDashboard = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log("Form submitted:", formData);
+    // Clear form data after submission
+    setFormData({ name: "", email: "", message: "" });
+  };
+
   return (
     <div>
+      {isOpen && (
+        <div className="absolute lg:top-14 sm:top-[4rem] left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-gray-200 rounded-lg p-8 lg:w-[50%] sm:w-[90%] mx-4">
+            <button
+              className="absolute lg:top-20 sm:top-[2rem] sm:right-[15%] lg:right-[28%] text-black text-end text-3xl pointer"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <IoCloseSharp />
+            </button>
+            <h2 className="text-2xl font-semibold mb-4">Add Team</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  //   value={formData.name}
+                  onChange={handleChange}
+                  className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                  placeholder="Leader Name"
+                />
+              </div>
+              <div className="type lg:ml-20 sm:ml-5">
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    id="part5"
+                    name="part5"
+                    // value={formData.email}
+                    onChange={handleChange}
+                    className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                    placeholder="History Parts"
+                  />
+                </div>
+                <div>
+                  <div className="mb-4">
+                    <textarea
+                      className="w-full bg-white border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                      name="about"
+                      id=""
+                      cols="30"
+                      rows="4"
+                      placeholder="About Your"
+                    ></textarea>
+                  </div>
+                </div>
+                <div>
+                  <div className="mb-4">
+                    <input
+                      type="file"
+                      className="w-full bg-white border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                      name="about"
+                      id=""
+                      placeholder="About Your"
+                    ></input>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       <div className="mt-28">
         <div className="container-main lg:grid lg:grid-cols-12 sm:block">
           <div className="sidebar bg-yellow-300">
@@ -135,20 +175,25 @@ const Dashboard = () => {
                 </span>
               </div>
               <div className="button">
-                <div className="btn cursor-pointer">New Add</div>
+                <div
+                  className="btn cursor-pointer"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  Add Team
+                </div>
                 {/* <div className="btn cursor-pointer">Upload</div> */}
               </div>
             </div>
           </div>
           <div className="main-content">
             <div className="projects">
-              <h1 className="title">All User</h1>
+              <h1 className="title">All Teams</h1>
               <div className="project-card grid grid-cols-12 gap-10">
-                {user.map((user) => (
+                {team.map((t) => (
                   <div className="project-card-item lg:col-span-6 sm:col-span-12 sm:w-[70%] lg:w-full">
                     <div className="flex flex-col gap-5">
-                      <span className="project-name">{user.name}</span>
-                      <span className="project-desc">{user.about}</span>
+                      <span className="project-name">{t.name}</span>
+                      <span className="project-desc">{t.role}</span>
                       <div className="project-item-button">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -177,82 +222,6 @@ const Dashboard = () => {
                 ))}
               </div>
             </div>
-            {/* <div className="announcements">
-              <h1 className="title">Announcements</h1>
-              <div className="announcements-container">
-                <div className="item">
-                  <span className="name">Site Maintenance</span>
-                  <span className="desc">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.{" "}
-                  </span>
-                  <hr />
-                  <br />
-                </div>
-                <div className="item">
-                  <span className="name">Site Maintenance</span>
-                  <span className="desc">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.{" "}
-                  </span>
-                  <hr />
-                  <br />
-                </div>
-                <div className="item">
-                  <span className="name">Site Maintenance</span>
-                  <span className="desc">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.{" "}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="trending">
-              <h1 className="title">Trending</h1>
-              <div className="trending-container">
-                <div className="trending-item">
-                  <img
-                    src="https://images.unsplash.com/photo-1692305416355-dd61ca199c8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80"
-                    alt
-                    className="avatar"
-                  />
-                  <div className="trending-item-desc">
-                    <span className="title">@tegan</span>
-                    <span className="desc">World Peace Builder</span>
-                  </div>
-                </div>
-                <div className="trending-item">
-                  <img
-                    src="https://images.unsplash.com/photo-1692305416355-dd61ca199c8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80"
-                    alt
-                    className="avatar"
-                  />
-                  <div className="trending-item-desc">
-                    <span className="title">@tegan</span>
-                    <span className="desc"> Peace Builder</span>
-                  </div>
-                </div>
-                <div className="trending-item">
-                  <img
-                    src="https://images.unsplash.com/photo-1692305416355-dd61ca199c8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80"
-                    alt
-                    className="avatar"
-                  />
-                  <div className="trending-item-desc">
-                    <span className="title">@tegan</span>
-                    <span className="desc">World Peace Builder</span>
-                  </div>
-                </div>
-                <div className="trending-item">
-                  <img
-                    src="https://images.unsplash.com/photo-1692305416355-dd61ca199c8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80"
-                    alt
-                    className="avatar"
-                  />
-                  <div className="trending-item-desc">
-                    <span className="title">@tegan</span>
-                    <span className="desc">World Peace Builder</span>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
@@ -260,4 +229,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default TeameDashboard;

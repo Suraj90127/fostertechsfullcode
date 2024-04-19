@@ -124,6 +124,7 @@ export const Navlink = [
     sublinks: [
       {
         Head: "Engineering",
+        text: "practical knowledge to design, make, and maintain structures",
         mainlink: "/projects/engineeringpro/engineering",
         sublink: [
           // {
@@ -150,6 +151,7 @@ export const Navlink = [
       },
       {
         Head: "Retrofitting",
+        text: "The act of befitting new systems designed.",
         mainlink: "/projects/rectrofittingpro/rectrofitttin",
         sublink: [
           // {
@@ -171,6 +173,7 @@ export const Navlink = [
       },
       {
         Head: "Fabrication",
+        text: "The innovation of practice - formed factors and structures.",
         mainlink: "/projects/fabricationpro/fabrication",
         sublink: [
           // {
@@ -187,6 +190,7 @@ export const Navlink = [
       },
       {
         Head: "Waste Management",
+        text: "Disposing of waste accoutrements while minimizing environmental impact",
         mainlink: "/projects/wastemanagementpro/wastemaneg",
         sublink: [
           // {

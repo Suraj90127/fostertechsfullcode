@@ -53,6 +53,10 @@ import ProductDetails from "./components/product/ProductDetails";
 import Dashboard from "./components/admindashboard/Dashboard";
 import Loginform from "./components/Loginform";
 import Signupform from "./components/Signupform";
+import ProductDashboard from "./components/admindashboard/ProductDashboard";
+import LeaderDashboard from "./components/admindashboard/LeaderDashboard";
+import TeameDashboard from "./components/admindashboard/TeameDashboard";
+import CareerDashboard from "./components/admindashboard/CareerDashboard";
 
 function App() {
   return (
@@ -201,6 +205,10 @@ function App() {
           <Route path="/carees" element={<Career />} />
           {/* Dashboard */}
           <Route path="/admin-dashboard" element={<Dashboard />} />
+          <Route path="/product-dashboard" element={<ProductDashboard />} />
+          <Route path="/leader-dashboard" element={<LeaderDashboard />} />
+          <Route path="/team-dashboard" element={<TeameDashboard />} />
+          <Route path="/career-dashboard" element={<CareerDashboard />} />
 
           <Route path="/login" element={<Loginform />} />
           {/* <Route path="/signup" element={<Signupform />} /> */}

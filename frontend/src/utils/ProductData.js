@@ -7,7 +7,7 @@ import PneumaticActuators from "../assets/product/Pneumatic-Actuators.webp";
 
 export const products = [
   {
-    name: "ELECTRICAL ACTUATORS: -",
+    head: "ELECTRICAL ACTUATORS: -",
     subdata: [
       {
         id: 1,

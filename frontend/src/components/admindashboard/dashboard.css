@@ -175,8 +175,9 @@ body {
 }
 
 .button .btn {
-  min-width: 100px;
-  height: 40px;
+  /* min-width: 100px;
+  height: 40px; */
+  padding: 8px;
   border-radius: 20px;
   background-color: #0ea5e9;
   display: flex;

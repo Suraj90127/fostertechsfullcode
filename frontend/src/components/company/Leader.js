@@ -3,9 +3,31 @@ import leader1 from "../../assets/image/leader1.jpg";
 import trading1 from "../../assets/image/trading1.jpg";
 
 const Leader = () => {
+  const leaderData = [
+    {
+      name: "Divey Mahajan",
+      status: "Chief Executive Officer",
+      exp: "Total Experience- 15 Years",
+      about:
+        "Project Management, Petrochemical, Upstream Onshore and Offshore Oil & Gas, Downstream Onshore and Offshore Oil & Gas, Power Plants, Water Treatment, Infrastructure, Civil Structure.",
+      partshistory: true,
+      partshistory: "Part of Career History:",
+      history: [
+        {
+          poin1: "Kellogg Brown & Root (KBR), Singapore,",
+          poin2: "McDermott Asia Pacific, Singapore,",
+          poin2: "NPCC, Abu Dhabi ,",
+          poin2: "Samsung Heavy Industries, Noida, India,",
+          poin2: "Triune Energy Services Pvt. Ltd., Delhi, India",
+        },
+      ],
+    },
+  ];
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
   return (
     <>
       <div>
