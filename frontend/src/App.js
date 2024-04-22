@@ -211,7 +211,7 @@ function App() {
           <Route path="/career-dashboard" element={<CareerDashboard />} />
 
           <Route path="/login" element={<Loginform />} />
-          {/* <Route path="/signup" element={<Signupform />} /> */}
+          <Route path="/signup" element={<Signupform />} />
           <Route path="/get-start" element={<ContactUs />} />
         </Routes>
       </div>

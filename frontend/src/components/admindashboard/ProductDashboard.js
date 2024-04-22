@@ -1,59 +1,118 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 import logo from "../../assets/image/logo_up.png";
 import { FaTools } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { GiTeamIdea } from "react-icons/gi";
-import { Link } from "react-router-dom";
-import { products } from "../../utils/ProductData";
+import { Link, useNavigate } from "react-router-dom";
+// import { products } from "../../utils/ProductData";
 import { IoCloseSharp } from "react-icons/io5";
+import axios from "axios";
+import { useAuth } from "../../context/auth";
 
 const ProductDashboard = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [auth, setAuth] = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+  const naviget = useNavigate();
+  const [image, setImage] = useState("");
+  const [preview, setPreview] = useState("");
+  const [products, setProducts] = useState([]);
+  const [name, setName] = useState("");
+  const [type1, setType1] = useState("");
+  const [type2, setType2] = useState("");
+  const [type3, setType3] = useState("");
+  const [type4, setType4] = useState("");
+  const [type5, setType5] = useState("");
+  const [type6, setType6] = useState("");
+  const [type7, setType7] = useState("");
+  const [type8, setType8] = useState("");
+  const [type9, setType9] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const productData = new FormData();
+  productData.append("name", name);
+  productData.append("type1", type1);
+  productData.append("type2", type2);
+  productData.append("type3", type3);
+  productData.append("type4", type4);
+  productData.append("type5", type5);
+  productData.append("type6", type6);
+  productData.append("type7", type7);
+  productData.append("type8", type8);
+  productData.append("type9", type9);
+  productData.append("image", image);
 
-  const handleSubmit = (e) => {
+  const hendelSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Clear form data after submission
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const data = await axios.post(
+        "http://localhost:4000/api/product",
+        productData,
+        config
+      );
+
+      if (data) {
+        // naviget("/login");
+        setIsOpen(!isOpen);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleImage = (event) => {
+    const file = event.target.files[0];
+    // setFormData(file);
+    setImage(file);
+    // console.log("file", file)
+    // const reader = new FileReader();
+    // reader?.readAsDataURL(file);
+
+    // reader.onload = () => {
+    //   setPreview(reader.result);
+    // };
+    // console.log("gggggggggggggg", file);
+  };
+
+  const fetchProduct = async () => {
+    try {
+      const data = await axios.get(
+        "http://localhost:4000/api/product/getallproduct"
+      );
+      setProducts(data?.data); // Assuming the response.data is an array of users
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+  useEffect(() => {
+    fetchProduct();
+  }, []);
 
   return (
     <div>
-      {/* popup form */}
-
       {isOpen && (
         <div className="absolute lg:top-10 sm:top-[15rem]  left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-gray-200 rounded-lg p-8 lg:w-[70%] sm:w-[90%] mx-4">
             <button
-              className="absolute lg:top-32 sm:top-[-8rem] right-[18%] text-black text-end text-3xl pointer"
+              className="absolute lg:top-20 sm:top-[-8rem] right-[18%] text-black text-end text-3xl pointer"
               onClick={() => setIsOpen(!isOpen)}
             >
               <IoCloseSharp />
             </button>
             <h2 className="text-2xl font-semibold mb-4">Add Product</h2>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="mb-4">
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
                   className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                   placeholder="Product Name"
                 />
@@ -62,33 +121,33 @@ const ProductDashboard = () => {
                 <div className="flex sm:flex-col lg:flex-row gap-5 w-full">
                   <div className="mb-4">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      type="text"
+                      id="type1"
+                      name="type1"
+                      onChange={(e) => setType1(e.target.value)}
+                      value={type1}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Type - 1"
                     />
                   </div>
                   <div className="mb-4">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      type="text"
+                      id="type2"
+                      name="type2"
+                      onChange={(e) => setType2(e.target.value)}
+                      value={type2}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Type - 2"
                     />
                   </div>
                   <div className="mb-4">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      type="text"
+                      id="type3"
+                      name="type3"
+                      onChange={(e) => setType3(e.target.value)}
+                      value={type3}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Type - 3"
                     />
@@ -97,33 +156,33 @@ const ProductDashboard = () => {
                 <div className="flex sm:flex-col lg:flex-row gap-5 w-full">
                   <div className="mb-4">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      type="text"
+                      id="type4"
+                      name="type4"
+                      onChange={(e) => setType4(e.target.value)}
+                      value={type4}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Type - 4"
                     />
                   </div>
                   <div className="mb-4">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      type="text"
+                      id="type5"
+                      name="type5"
+                      onChange={(e) => setType5(e.target.value)}
+                      value={type5}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Type - 5"
                     />
                   </div>
                   <div className="mb-4">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      type="text"
+                      id="type6"
+                      name="type6"
+                      onChange={(e) => setType6(e.target.value)}
+                      value={type6}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Type - 6"
                     />
@@ -132,36 +191,55 @@ const ProductDashboard = () => {
                 <div className="flex sm:flex-col lg:flex-row gap-5 w-full">
                   <div className="mb-4">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      type="text"
+                      id="type7"
+                      name="type7"
+                      onChange={(e) => setType7(e.target.value)}
+                      value={type7}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Type - 7"
                     />
                   </div>
                   <div className="mb-4">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      type="text"
+                      id="type8"
+                      name="type8"
+                      onChange={(e) => setType8(e.target.value)}
+                      value={type8}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Type - 8"
                     />
                   </div>
                   <div className="mb-4">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      type="text"
+                      id="type9"
+                      name="typ9"
+                      onChange={(e) => setType9(e.target.value)}
+                      value={type9}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Type - 9"
                     />
+                  </div>
+                </div>
+                <div className="file w-52">
+                  <div className="mb-4">
+                    <input
+                      type="file"
+                      id="image"
+                      name="image"
+                      accept="image/*"
+                      onChange={handleImage}
+                      // value={formData.image}
+                      className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                      placeholder="Type - 9"
+                    />
+                  </div>
+                </div>
+                <div className="file w-32">
+                  <div className="mb-4">
+                    <img src={preview} alt="" />
                   </div>
                 </div>
               </div>
@@ -169,6 +247,8 @@ const ProductDashboard = () => {
                 <button
                   type="submit"
                   className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                  onClick={hendelSubmit}
+                  // onClick={() => setIsOpen(!isOpen)}
                 >
                   Submit
                 </button>
@@ -244,7 +324,7 @@ const ProductDashboard = () => {
                 />
                 <span>
                   <h1>Hi there,</h1>
-                  <h1 className="title">Divey Mahajan</h1>
+                  <h1 className="title">{auth?.user?.name}</h1>
                 </span>
               </div>
               <div className="button">
@@ -262,21 +342,22 @@ const ProductDashboard = () => {
             <div className="projects">
               <h1 className="title text-2xl">All Product</h1>
               <div className="project-card grid grid-cols-12 gap-10">
-                {products.map((pro) => (
+                {products?.map((pro) => (
                   <div className="project-card-item lg:col-span-6 sm:col-span-12 sm:w-[70%] lg:w-full">
                     <div className="flex flex-col gap-5">
-                      <span className="project-name">{pro.head}</span>
+                      <span className="project-name">{pro.name}</span>
                       <div className="subtype">
-                        {pro.subdata.map((type) => (
-                          <div className="flex flex-col gap-5">
-                            <span className="project-desc">{type.type1}</span>
-                            <span className="project-desc">{type.type2}</span>
-                            <span className="project-desc">{type.type3}</span>
-                            <span className="project-desc">{type.type4}</span>
-                            <span className="project-desc">{type.type5}</span>
-                            <span className="project-desc">{type.type5}</span>
-                          </div>
-                        ))}
+                        <div className="flex flex-col gap-5">
+                          <span className="project-desc">{pro.type1}</span>
+                          <span className="project-desc">{pro.type2}</span>
+                          <span className="project-desc">{pro.type3}</span>
+                          <span className="project-desc">{pro.type4}</span>
+                          <span className="project-desc">{pro.type5}</span>
+                          <span className="project-desc">{pro.type6}</span>
+                          <span className="project-desc">{pro.type7}</span>
+                          <span className="project-desc">{pro.type8}</span>
+                          <span className="project-desc">{pro.type9}</span>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import productbnner from "../../assets/image/productbanner.png";
 import { IoCloseSharp } from "react-icons/io5";
-import { products } from "../../utils/ProductData";
+// import { products } from "../../utils/ProductData";
 import button1 from "../../assets/product/button1.webp";
 import button2 from "../../assets/product/button2.webp";
 import button3 from "../../assets/product/button3.webp";
@@ -13,6 +13,7 @@ import Cair_Valve_Automation_Accessories_Catelogue_compressed from "../../assets
 
 import "./producstyle.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Products = () => {
   useEffect(() => {
@@ -20,6 +21,7 @@ const Products = () => {
   }, []);
   const emailAddress = "example@example.com";
   const [details, setDetails] = useState([]);
+  const [products, setProducts] = useState([]);
   const [menu, setMenu] = useState(false);
   const detailsPage = (product) => {
     setDetails([{ ...product }]);
@@ -29,21 +31,25 @@ const Products = () => {
   const handleClick = () => {
     window.location.href = `mailto:${emailAddress}`;
   };
-  const ProductData = [
-    {
-      brand: "Vodka",
-      name: "Rozzita",
-      flavour: "Chocolate Flavour",
-      url: "/chocolate-flavour-rozzita-vodka",
-      img: productbnner,
-      p1: "Kaya Spirits introduces its classiest version of whisky, Old Professor Gold Reserve Whisky. The aged whisky made from the best of grains has a pure and unique flavor with a scintillating aroma that pleases the taste buds as well as the senses of its consumers.",
-      p2: "is much more than the regular and ordinary whiskies.Further, its unique taste gives you a refreshing smooth flavor which will linger in your mouth for long so that you can enjoy the whisky slowly",
-    },
-  ];
+
+  const fetchProduct = async () => {
+    try {
+      const data = await axios.get(
+        "http://localhost:4000/api/product/getallproduct"
+      );
+      setProducts(data?.data); // Assuming the response.data is an array of users
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+  useEffect(() => {
+    fetchProduct();
+  }, []);
 
   return (
     <>
       <div className="relative">
+        {/* {console.log("pppppppppppppppppppppppppp", products)} */}
         {/* Banner section */}
         <div>
           <div className=" bottom-0  w-full mt-20 bg-no-repeat opacity-80 careers">
@@ -101,47 +107,44 @@ const Products = () => {
             </p>
           </div>
           <div>
-            {products.map((item) => (
+            {products?.map((item, i) => (
               <div>
                 <h2 className="my-10 text-lg font-semibold text-yellow-500">
-                  {item.head}
+                  {item.name}
                 </h2>
                 <div className="">
-                  {item.subdata.map((p, i) => (
-                    <div className="w-full grid grid-cols-12 gap-6 rounded-lg relative my-10">
-                      <div
-                        key={i}
-                        className="lg:col-span-9 sm:col-span-12 group transition-all duration-500 "
-                      >
-                        <div className="lg:ml-10 sm:ml-5 mt-10">
-                          <ul className="lg:text-xl sm:text-sm font-semibold gap-10 leading-loose">
-                            <li>{p.type1}</li>
-                            <li>{p.type2}</li>
-                            <li>{p.type3}</li>
-                            <li>{p.type4}</li>
-                            <li>{p.type5}</li>
-                            <li>{p.type6}</li>
-                            <li>{p.type7}</li>
-                            <li>{p.type8}</li>
-                            <li>{p.type9}</li>
-                          </ul>
-                        </div>
-                        <div className="relative flex overflow-hidden text-center items-center justify-center"></div>
+                  {/* {item.subdata.map((p, i) => ( */}
+                  <div className="w-full grid grid-cols-12 gap-6 rounded-lg relative my-10">
+                    <div
+                      key={i}
+                      className="lg:col-span-9 sm:col-span-12 group transition-all duration-500 "
+                    >
+                      <div className="lg:ml-10 sm:ml-5 mt-10">
+                        <ul className="lg:text-xl sm:text-sm font-semibold gap-10 leading-loose">
+                          <li>{item.type1}</li>
+                          <li>{item.type2}</li>
+                          <li>{item.type3}</li>
+                          <li>{item.type4}</li>
+                          <li>{item.type5}</li>
+                          <li>{item.type6}</li>
+                          <li>{item.type7}</li>
+                          <li>{item.type8}</li>
+                          <li>{item.type9}</li>
+                        </ul>
                       </div>
-                      <div
-                        // to={p.link}
-                        key={i}
-                        className="lg:col-span-3 sm:col-span-12 group transition-all duration-500 hover:shadow-md hover:-mt-3 rounded-lg bg-white border-t-2 shadow-2xl lg:py-10 sm:py-5 "
-                        // onClick={() => detailsPage(p)}
-                      >
-                        <div className="relative flex overflow-hidden text-center items-center justify-center">
-                          <img
-                            className="sm:w-52 w-52 lg:h-52 sm:h-28 rounded-t-lg"
-                            src={p.images}
-                            alt="product image"
-                          />
-                        </div>
-                        {/* <div className="pt-10 lg:text-lg sm:text-base lg:text-slate-600 px-5 ">
+                    </div>
+                    <div
+                      className="lg:col-span-3 sm:col-span-12 group transition-all duration-500 hover:shadow-md hover:-mt-3 rounded-lg bg-white border-t-2 shadow-2xl lg:py-10 sm:py-5 "
+                      // onClick={() => detailsPage(p)}
+                    >
+                      <div className="relative flex overflow-hidden text-center items-center justify-center">
+                        <img
+                          className="sm:w-52 w-52 lg:h-52 sm:h-28 rounded-t-lg"
+                          src={item?.image?.path}
+                          alt="product image"
+                        />
+                      </div>
+                      {/* <div className="pt-10 lg:text-lg sm:text-base lg:text-slate-600 px-5 ">
                           <h2 className="product-title">{p.title1}</h2>
                           <div className="flex justify-start items-center gap-3">
                             <span className="text-lg  font-bold">
@@ -149,9 +152,9 @@ const Products = () => {
                             </span>
                           </div>
                         </div> */}
-                      </div>
                     </div>
-                  ))}
+                  </div>
+                  {/* ))} */}
                   {/* model  */}
 
                   {menu ? (

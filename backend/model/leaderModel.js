@@ -1,40 +1,33 @@
 const mongoose = require("mongoose"); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var productSchema = new mongoose.Schema({
+var leaderSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-
-  type1: {
+  status: {
     type: String,
   },
-  type2: {
+  exp: {
     type: String,
   },
-  type3: {
+  part1: {
     type: String,
   },
-  type4: {
+  part2: {
     type: String,
   },
-  type5: {
+  part3: {
     type: String,
   },
-  type6: {
+  part4: {
     type: String,
   },
-  type7: {
-    type: String,
-  },
-  type8: {
-    type: String,
-  },
-  type9: {
+  part5: {
     type: String,
   },
 
-  des: {
+  about: {
     type: String,
   },
   image: {
@@ -44,4 +37,4 @@ var productSchema = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = mongoose.model("Product", productSchema);
+module.exports = mongoose.model("Leader", leaderSchema);

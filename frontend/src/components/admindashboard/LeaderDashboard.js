@@ -1,19 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 import logo from "../../assets/image/logo_up.png";
 import { FaTools } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-import { GiTeamIdea } from "react-icons/gi";
+import { GiExpander, GiTeamIdea } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
+import axios from "axios";
 
 const LeaderDashboard = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [image, setImage] = useState("");
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState("");
+  const [leaderDatas, setLeaderDatas] = useState([]);
+  const [exp, setExp] = useState("");
+  const [part1, setPart1] = useState("");
+  const [part2, setPart2] = useState("");
+  const [part3, setPart3] = useState("");
+  const [part4, setPart4] = useState("");
+  const [part5, setPart5] = useState("");
+  const [about, setAbout] = useState("");
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
-    message: "",
+    status: "",
+    exp: "",
+    part1: "",
+    part2: "",
+    part3: "",
+    part4: "",
+    part5: "",
+    about: "",
+    image: image,
   });
+  const leaderData = new FormData();
+  leaderData.append("name", name);
+  leaderData.append("status", status);
+  leaderData.append("exp", exp);
+  leaderData.append("part1", part1);
+  leaderData.append("part2", part2);
+  leaderData.append("part3", part3);
+  leaderData.append("part4", part4);
+  leaderData.append("part5", part5);
+  leaderData.append("about", about);
+  leaderData.append("image", image);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,55 +53,101 @@ const LeaderDashboard = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const hendelSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Clear form data after submission
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const data = await axios.post(
+        "http://localhost:4000/api/leader",
+        leaderData,
+        config
+      );
+      console.log("ddddddddddddddddd", data);
+
+      if (data) {
+        // naviget("/login");
+        setIsOpen(!isOpen);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const leaderData = [
-    {
-      name: "Divey Mahajan",
-      status: "Chief Executive Officer",
-      exp: "Total Experience- 15 Years",
-      about:
-        "Project Management, Petrochemical, Upstream Onshore and Offshore Oil & Gas, Downstream Onshore and Offshore Oil & Gas, Power Plants, Water Treatment, Infrastructure, Civil Structure.",
-      partshistory: true,
-      partshistory: "Part of Career History:",
-      history: [
-        {
-          poin1: "Kellogg Brown & Root (KBR), Singapore,",
-          poin2: "McDermott Asia Pacific, Singapore,",
-          poin3: "NPCC, Abu Dhabi ,",
-          poin4: "Samsung Heavy Industries, Noida, India,",
-          poin5: "Triune Energy Services Pvt. Ltd., Delhi, India",
-        },
-      ],
-    },
-  ];
+  const handleImage = (event) => {
+    const file = event.target.files[0];
+    // setFormData(file);
+    setImage(file);
+    // console.log("file", file)
+    // const reader = new FileReader();
+    // reader?.readAsDataURL(file);
+
+    // reader.onload = () => {
+    //   setPreview(reader.result);
+    // };
+    // console.log("gggggggggggggg", file);
+  };
+
+  // const leaderDatas = [
+  //   {
+  //     name: "Divey Mahajan",
+  //     status: "Chief Executive Officer",
+  //     exp: "Total Experience- 15 Years",
+  //     about:
+  //       "Project Management, Petrochemical, Upstream Onshore and Offshore Oil & Gas, Downstream Onshore and Offshore Oil & Gas, Power Plants, Water Treatment, Infrastructure, Civil Structure.",
+  //     partshistory: true,
+  //     partshistory: "Part of Career History:",
+  //     history: [
+  //       {
+  //         poin1: "Kellogg Brown & Root (KBR), Singapore,",
+  //         poin2: "McDermott Asia Pacific, Singapore,",
+  //         poin3: "NPCC, Abu Dhabi ,",
+  //         poin4: "Samsung Heavy Industries, Noida, India,",
+  //         poin5: "Triune Energy Services Pvt. Ltd., Delhi, India",
+  //       },
+  //     ],
+  //   },
+  // ];
+
+  const fetchProduct = async () => {
+    try {
+      const data = await axios.get(
+        "http://localhost:4000/api/leader/get-all-leader"
+      );
+      setLeaderDatas(data?.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+  useEffect(() => {
+    fetchProduct();
+  }, []);
 
   return (
     <div>
+      {/* {console.log("lllllllllllllllllll", leaders)} */}
       {isOpen && (
         <div className="absolute lg:top-14 sm:top-[13rem] left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-gray-200 rounded-lg p-8 lg:w-[70%] sm:w-[90%] mx-4">
             <button
-              className="absolute lg:top-16 sm:top-[-7rem] right-[18%] text-black text-end text-3xl pointer"
+              className="absolute lg:top-12 sm:top-[-7rem] right-[18%] text-black text-end text-3xl pointer"
               onClick={() => setIsOpen(!isOpen)}
             >
               <IoCloseSharp />
             </button>
             <h2 className="text-2xl font-semibold mb-4">Add Leaders</h2>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="mb-4">
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  //   value={formData.name}
-                  onChange={handleChange}
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
                   className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                   placeholder="Leader Name"
                 />
@@ -83,8 +159,8 @@ const LeaderDashboard = () => {
                       type="text"
                       id="status"
                       name="status"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      onChange={(e) => setStatus(e.target.value)}
+                      value={status}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Status"
                     />
@@ -95,8 +171,8 @@ const LeaderDashboard = () => {
                       type="text"
                       id="exp"
                       name="exp"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      onChange={(e) => setExp(e.target.value)}
+                      value={GiExpander}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Experience"
                     />
@@ -106,8 +182,8 @@ const LeaderDashboard = () => {
                       type="text"
                       id="part1"
                       name="part1"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      onChange={(e) => setPart1(e.target.value)}
+                      value={part1}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="History Parts"
                     />
@@ -119,8 +195,8 @@ const LeaderDashboard = () => {
                       type="text"
                       id="part2"
                       name="part2"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      onChange={(e) => setPart2(e.target.value)}
+                      value={part2}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="History Parts"
                     />
@@ -130,8 +206,8 @@ const LeaderDashboard = () => {
                       type="text"
                       id="part3"
                       name="part3"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      onChange={(e) => setPart3(e.target.value)}
+                      value={part3}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="History Parts"
                     />
@@ -141,8 +217,8 @@ const LeaderDashboard = () => {
                       type="text"
                       id="part4"
                       name="part4"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      onChange={(e) => setPart4(e.target.value)}
+                      value={part4}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="History Parts"
                     />
@@ -154,8 +230,8 @@ const LeaderDashboard = () => {
                       type="text"
                       id="part5"
                       name="part5"
-                      // value={formData.email}
-                      onChange={handleChange}
+                      onChange={(e) => setPart5(e.target.value)}
+                      value={part5}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="History Parts"
                     />
@@ -167,10 +243,25 @@ const LeaderDashboard = () => {
                       className="w-full bg-white border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       name="about"
                       id=""
+                      onChange={(e) => setAbout(e.target.value)}
+                      value={about}
                       cols="30"
                       rows="4"
                       placeholder="About Your"
                     ></textarea>
+                  </div>
+                </div>
+                <div className="file w-32">
+                  <div className="mb-4">
+                    <input
+                      type="file"
+                      id="image"
+                      name="image"
+                      accept="image/*"
+                      onChange={handleImage}
+                      className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                      placeholder="Type - 9"
+                    />
                   </div>
                 </div>
               </div>
@@ -178,6 +269,7 @@ const LeaderDashboard = () => {
                 <button
                   type="submit"
                   className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                  onClick={hendelSubmit}
                 >
                   Submit
                 </button>
@@ -271,7 +363,7 @@ const LeaderDashboard = () => {
             <div className="projects">
               <h1 className="title">All Leader</h1>
               <div className="project-card grid grid-cols-12 gap-10">
-                {leaderData.map((user) => (
+                {leaderDatas?.map((user) => (
                   <div className="project-card-item lg:col-span-6 sm:col-span-12 sm:w-[70%] lg:w-full">
                     <div className="flex flex-col gap-5">
                       <span className="project-name">{user.name}</span>

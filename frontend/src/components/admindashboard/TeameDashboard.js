@@ -9,7 +9,7 @@ import { team } from "../../utils/TeamData";
 import { IoCloseSharp } from "react-icons/io5";
 
 const TeameDashboard = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -60,8 +60,8 @@ const TeameDashboard = () => {
                 <div className="mb-4">
                   <input
                     type="text"
-                    id="part5"
-                    name="part5"
+                    id="part"
+                    name="part"
                     // value={formData.email}
                     onChange={handleChange}
                     className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
@@ -85,7 +85,7 @@ const TeameDashboard = () => {
                     <input
                       type="file"
                       className="w-full bg-white border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
-                      name="about"
+                      name="file"
                       id=""
                       placeholder="About Your"
                     ></input>

@@ -9,21 +9,23 @@ const AuthProvider = ({ children }) => {
   });
   //default axios
   const dd = (axios.defaults.headers.common["Authorization"] = auth?.token);
-  console.log("ff", auth);
+  // console.log("auht", auth);
   useEffect(() => {
     const data = localStorage.getItem("auth");
     if (data) {
       const parseData = JSON.parse(data);
+      // console.log("jjjjjjjjjjjjjjjj", parseData);
       setAuth({
         ...auth,
-        user: parseData.user,
-        token: parseData.user.tokens[0].token,
+        user: parseData?.user,
+        token: parseData?.token,
       });
       // console.log("tooo", parseData.user.tokens[0].token)
     }
     //eslint-disable-next-line
   }, []);
   return (
+    // console.log("jjjjjjjjj", auth),
     <AuthContext.Provider value={[auth, setAuth]}>
       {children}
     </AuthContext.Provider>

@@ -23,7 +23,7 @@ const CareerDashboard = () => {
     },
   ];
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -52,7 +52,7 @@ const CareerDashboard = () => {
         <div className="absolute lg:top-14 sm:top-[4rem] left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-gray-200 rounded-lg p-8 lg:w-[50%] sm:w-[90%] mx-4">
             <button
-              className="absolute lg:top-20 sm:top-[5rem] sm:right-[15%] lg:right-[28%] text-black text-end text-3xl pointer"
+              className="absolute lg:top-28 sm:top-[5rem] sm:right-[15%] lg:right-[28%] text-black text-end text-3xl pointer"
               onClick={() => setIsOpen(!isOpen)}
             >
               <IoCloseSharp />

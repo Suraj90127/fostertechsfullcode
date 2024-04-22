@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useAuth } from "../../context/auth";
 
 import "./navbar.css";
 import Logo from "../../assets/image/logo_up.png";
@@ -7,12 +8,13 @@ import { Navlink } from "../../utils/NavDatas";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const Nabvar = () => {
+  const [auth, setAuth] = useAuth();
   const eleRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [heading, setHeading] = useState("");
   const [subHeading, setSubHeading] = useState("");
   const [visible, setVisible] = useState(true);
-  const [role, setRole] = useState("admin");
+  const [role, setRole] = useState(auth?.user?.role);
   const handleChildDropdown = (ele) => {
     const closestUl = eleRef.current.closest("ul");
     console.log(closestUl);
@@ -33,6 +35,8 @@ const Nabvar = () => {
 
   return (
     <>
+      {/* {console.log("navbar function", auth)}
+      {console.log("navbar functiohhhhhhhhn", auth?.user?.role)} */}
       <div>
         <nav className="bg-white skk border-b-2 shadow-xl">
           <div className="flex items-center font-medium justify-around">
@@ -195,7 +199,7 @@ const Nabvar = () => {
               ))}
             </ul>
 
-            {role == "admin" ? (
+            {auth?.user?.role == "admin" ? (
               <div className="px-1 text-left md:cursor-pointer sm:hidden lg:block group">
                 <Link to="/admin-dashboard">
                   <h2 className="py-7 flex justify-between items-center md:pr-0 pr-5 group">

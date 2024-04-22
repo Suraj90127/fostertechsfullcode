@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Card,
@@ -8,10 +9,49 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import logo from "../assets/image/logo_up.png";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth";
+import axios from "axios";
 
 const Loginform = () => {
+  const naviget = useNavigate();
+  const [auth, setAuth] = useAuth();
+  const [formData, setFormData] = useState({
+    email: "",
+
+    password: "",
+  });
+
+  const inputHendel = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  console.log(formData);
+  const hendelSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = await axios.post(
+        "http://localhost:4000/api/user/admin-login",
+        formData
+      );
+      // console.log("ff", data.data.user);
+      if (data) {
+        setAuth({
+          ...auth,
+          user: data.data.user,
+          token: data.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(data.data));
+        naviget("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="py-20">
+    <div className="bg-slate-300 py-20">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img className="mx-auto h-10 w-auto" src={logo} alt="Your Company" />
@@ -33,8 +73,11 @@ const Loginform = () => {
                 <input
                   id="email"
                   name="email"
+                  onChange={inputHendel}
+                  value={formData.email}
                   type="email"
                   autoComplete="email"
+                  placeholder="Enter Register Email."
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -63,9 +106,12 @@ const Loginform = () => {
                   id="password"
                   name="password"
                   type="password"
+                  onChange={inputHendel}
+                  value={formData.password}
                   autoComplete="current-password"
+                  placeholder="Enter Current password."
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -74,21 +120,19 @@ const Loginform = () => {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={hendelSubmit}
               >
                 Sign in
               </button>
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{" "}
-            <a
-              href="#"
-              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-            >
-              Start a 14 day free trial
-            </a>
-          </p>
+          <div className="flex justify-center gap-10  text-lg font-semibold mt-5">
+            <p className="text-slate-400 text-xl">Not a member?</p>
+            <Link to="/signup">
+              <span className="text-blue-400">Register Now</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
