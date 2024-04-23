@@ -9,8 +9,13 @@ import profile from "../../assets/image/profile.jpg";
 import history from "../../assets/image/history.jpg";
 import vission from "../../assets/image/vission.jpg";
 import { team } from "../../utils/TeamData";
+import axios from "axios";
+import { getFullPath } from "../../utils/utils";
 
 const Ourbusiness = () => {
+  const [teamDatas, setTeamDatas] = useState([]);
+  const [selected, setSelected] = useState(null);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -117,142 +122,20 @@ const Ourbusiness = () => {
     },
   ];
 
-  // const team = [
-  //   {
-  //     name: "Mr. Rakesh Kumar Gupta ",
-  //     role: "Offshore Structural Department/(Senior Consultant)",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Faisel Tufel      ",
-  //     role: "Lead Engineer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Divey Mahajan",
-  //     role: " Lead Engineer ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Mr. Sunil Kumar Prasad      ",
-  //     role: "Drafting Lead ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Shadab Ahmad      ",
-  //     role: "Senior Engineer",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Ravi Singh ",
-  //     role: "Engineer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Mayyur Rao      ",
-  //     role: "Engineer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "External    ",
-  //     role: "Senior Engineer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "External  ",
-  //     role: " Engineer   ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Asif Ali      ",
-  //     role: " Senior Engineer   ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Maaz Beg      ",
-  //     role: "Engineer   ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Juned Malik      ",
-  //     role: "Engineer   ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "(External        ",
-  //     role: "Senior Engineer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "External        ",
-  //     role: "Engineer   ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "2D Drafting      ",
-  //     role: "Engineer   ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Md. Arshad    ",
-  //     role: " Senior Designer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Praveen Singh      ",
-  //     role: "  Designer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Mathiazhgan Murugesan      ",
-  //     role: "  Designer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Aryan Rawat      ",
-  //     role: "  Designer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "3D Modelling      ",
-  //     role: "  Designer      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Md. Arshad      ",
-  //     role: "  Senior Modeller      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  //   {
-  //     name: "Mathiazhgan Murugesan      ",
-  //     role: "  Modeller      ",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  //   },
-  // ];
+  const fetchTeam = async () => {
+    try {
+      const data = await axios.get(
+        "http://localhost:4000/api/team/get-all-team"
+      );
+      setTeamDatas(data?.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+  useEffect(() => {
+    fetchTeam();
+  }, []);
 
-  const [selected, setSelected] = useState(null);
   const toggle = (i) => {
     if (selected === i) {
       return setSelected(null);
@@ -288,31 +171,6 @@ const Ourbusiness = () => {
           </div>
         </div>
         <div>
-          {/* fast fact section */}
-          {/* <div className="absolute   lg:top-60 lg:right-20 sm:mx-0   xl:bottom-[8rem] z-10 fast-facts my-8 py-10 px-8 lg:w-[22.5rem] sm:w-[20rem] h-[17rem] bg-white shadow-2xl ">
-            <div className="contant">
-              <h2 className="text-lg font-[400] text-[#161616] leading-6">
-                Fast Facts
-              </h2>
-              <p className="text-2xl font-semibold my-5">
-                One page Fast Facts on Fostertechs
-              </p>
-              <div className="ml-20 mt-10">
-                <a href={pdf} target="_blank">
-                  <button
-                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-2 border-blue-900 hover:border-transparent 
-                rounded flex flex-row"
-                  >
-                    <span>Download</span>
-                    <span className="text-xl ml-5">
-                      <MdOutlineFileDownload />
-                    </span>
-                  </button>
-                </a>
-              </div>
-            </div>
-          </div> */}
-
           {/* profile of company */}
           <div className="w-[100%]  bg-white lg:my-10 lg:mt-[80px] sm:mt-10">
             <div className="flex align-middle text-center justify-center">
@@ -599,20 +457,20 @@ const Ourbusiness = () => {
                         role="list"
                         className="grid gap-x-8 gap-y-12 sm:grid-cols-1 lg:grid-cols-3  lg:col-span-3 sm:gap-y-16 xl:col-span-3 lg:ml-20"
                       >
-                        {team.map((person) => (
-                          <li key={person.name}>
+                        {teamDatas.map((person, i) => (
+                          <li key={i}>
                             <div className="flex items-center gap-x-6 ">
                               <img
                                 className="h-16 w-16 rounded-full"
-                                src={person.imageUrl}
-                                alt=""
+                                src={getFullPath(person?.image?.filename)}
+                                alt={person?.image?.filename}
                               />
                               <div>
                                 <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
                                   {person.name}
                                 </h3>
                                 <p className="text-sm font-semibold leading-6 text-indigo-600">
-                                  {person.role}
+                                  {person.part}
                                 </p>
                               </div>
                             </div>

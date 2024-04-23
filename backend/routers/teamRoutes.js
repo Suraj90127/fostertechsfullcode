@@ -14,9 +14,9 @@ const { uploadPhoto } = require("../middlewares/uploadImages");
 
 const router = express.Router();
 
-router.post("/", authMiddleware, isAdmin, uploadPhoto.single("image"), addTeam);
-router.get("/get-team/:id", authMiddleware, isAdmin, getTeam);
-router.get("/get-all-team", authMiddleware, isAdmin, getAllTeam);
+router.post("/", uploadPhoto.single("image"), addTeam);
+router.get("/get-team/:id", getTeam);
+router.get("/get-all-team", getAllTeam);
 router.put(
   "/update-team/:id",
   authMiddleware,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 import logo from "../../assets/image/logo_up.png";
 import { FaTools } from "react-icons/fa";
@@ -7,33 +7,77 @@ import { GiTeamIdea } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { team } from "../../utils/TeamData";
 import { IoCloseSharp } from "react-icons/io5";
+import axios from "axios";
 
 const TeameDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [image, setImage] = useState("");
+  const [name, setName] = useState("");
+  const [part, setPart] = useState("");
+  const [about, setAbout] = useState("");
+  const [teamDatas, setTeamDatas] = useState([]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const teamData = new FormData();
+  teamData.append("name", name);
+  teamData.append("part", part);
+  teamData.append("about", about);
+  teamData.append("image", image);
 
-  const handleSubmit = (e) => {
+  const hendelSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Clear form data after submission
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const data = await axios.post(
+        "http://localhost:4000/api/team",
+        teamData,
+        config
+      );
+
+      if (data) {
+        // naviget("/login");
+        setIsOpen(!isOpen);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleImage = (event) => {
+    const file = event.target.files[0];
+    // setFormData(file);
+    setImage(file);
+    // console.log("file", file)
+    // const reader = new FileReader();
+    // reader?.readAsDataURL(file);
+
+    // reader.onload = () => {
+    //   setPreview(reader.result);
+    // };
+    // console.log("gggggggggggggg", file);
+  };
+
+  const fetchProduct = async () => {
+    try {
+      const data = await axios.get(
+        "http://localhost:4000/api/team/get-all-team"
+      );
+      setTeamDatas(data?.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+  useEffect(() => {
+    fetchProduct();
+  }, []);
 
   return (
     <div>
+      {/* {console.log("kkkkkkkkkkkkkkkkkkkkkkkkk", teamDatas)} */}
       {isOpen && (
         <div className="absolute lg:top-14 sm:top-[4rem] left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-gray-200 rounded-lg p-8 lg:w-[50%] sm:w-[90%] mx-4">
@@ -44,14 +88,14 @@ const TeameDashboard = () => {
               <IoCloseSharp />
             </button>
             <h2 className="text-2xl font-semibold mb-4">Add Team</h2>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="mb-4">
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  //   value={formData.name}
-                  onChange={handleChange}
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
                   className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                   placeholder="Leader Name"
                 />
@@ -62,8 +106,8 @@ const TeameDashboard = () => {
                     type="text"
                     id="part"
                     name="part"
-                    // value={formData.email}
-                    onChange={handleChange}
+                    onChange={(e) => setPart(e.target.value)}
+                    value={part}
                     className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                     placeholder="History Parts"
                   />
@@ -76,6 +120,8 @@ const TeameDashboard = () => {
                       id=""
                       cols="30"
                       rows="4"
+                      onChange={(e) => setAbout(e.target.value)}
+                      value={about}
                       placeholder="About Your"
                     ></textarea>
                   </div>
@@ -85,8 +131,9 @@ const TeameDashboard = () => {
                     <input
                       type="file"
                       className="w-full bg-white border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
-                      name="file"
-                      id=""
+                      name="image"
+                      accept="image/*"
+                      onChange={handleImage}
                       placeholder="About Your"
                     ></input>
                   </div>
@@ -96,6 +143,7 @@ const TeameDashboard = () => {
                 <button
                   type="submit"
                   className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                  onClick={hendelSubmit}
                 >
                   Submit
                 </button>
@@ -189,11 +237,11 @@ const TeameDashboard = () => {
             <div className="projects">
               <h1 className="title">All Teams</h1>
               <div className="project-card grid grid-cols-12 gap-10">
-                {team.map((t) => (
+                {teamDatas.map((t) => (
                   <div className="project-card-item lg:col-span-6 sm:col-span-12 sm:w-[70%] lg:w-full">
                     <div className="flex flex-col gap-5">
                       <span className="project-name">{t.name}</span>
-                      <span className="project-desc">{t.role}</span>
+                      <span className="project-desc">{t.part}</span>
                       <div className="project-item-button">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

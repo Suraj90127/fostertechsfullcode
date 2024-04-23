@@ -1,28 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import leader1 from "../../assets/image/leader1.jpg";
 import trading1 from "../../assets/image/trading1.jpg";
+import axios from "axios";
+import { getFullPath } from "../../utils/utils";
 
 const Leader = () => {
-  const leaderData = [
-    {
-      name: "Divey Mahajan",
-      status: "Chief Executive Officer",
-      exp: "Total Experience- 15 Years",
-      about:
-        "Project Management, Petrochemical, Upstream Onshore and Offshore Oil & Gas, Downstream Onshore and Offshore Oil & Gas, Power Plants, Water Treatment, Infrastructure, Civil Structure.",
-      partshistory: true,
-      partshistory: "Part of Career History:",
-      history: [
-        {
-          poin1: "Kellogg Brown & Root (KBR), Singapore,",
-          poin2: "McDermott Asia Pacific, Singapore,",
-          poin2: "NPCC, Abu Dhabi ,",
-          poin2: "Samsung Heavy Industries, Noida, India,",
-          poin2: "Triune Energy Services Pvt. Ltd., Delhi, India",
-        },
-      ],
-    },
-  ];
+  const [leaderData, setLeaderDatas] = useState([]);
+  // const leaderData = [
+  //   {
+  //     name: "Divey Mahajan",
+  //     status: "Chief Executive Officer",
+  //     exp: "Total Experience- 15 Years",
+  //     about:
+  //       "Project Management, Petrochemical, Upstream Onshore and Offshore Oil & Gas, Downstream Onshore and Offshore Oil & Gas, Power Plants, Water Treatment, Infrastructure, Civil Structure.",
+  //     partshistory: true,
+  //     partshistory: "Part of Career History:",
+  //     history: [
+  //       {
+  //         poin1: "Kellogg Brown & Root (KBR), Singapore,",
+  //         poin2: "McDermott Asia Pacific, Singapore,",
+  //         poin2: "NPCC, Abu Dhabi ,",
+  //         poin2: "Samsung Heavy Industries, Noida, India,",
+  //         poin2: "Triune Energy Services Pvt. Ltd., Delhi, India",
+  //       },
+  //     ],
+  //   },
+  // ];
+
+  const fetchLeader = async () => {
+    try {
+      const data = await axios.get(
+        "http://localhost:4000/api/leader/get-all-leader"
+      );
+      setLeaderDatas(data?.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+  useEffect(() => {
+    fetchLeader();
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -50,66 +67,62 @@ const Leader = () => {
             <hr className="mt-10 " />
           </div>
           {/* Divey Mahajan */}
+
           <div className="w-[100%]  bg-white lg:my-10 sm:my-0">
             <div className="bg-white sm:grid-cols-1">
               {/* contant section */}
               <div className="flex flex-col items-center justify-center w-full lg:py-10 sm:py-0 gap-4 md:gap-6 lg:gap-8">
                 <div className="md:flex flex-col gap-4 md:gap-6 lg:gap-8 lg:mx-10 sm:mx-5">
                   {/* first section */}
-                  <div className="lg:grid lg:grid-cols-12  items-start sm:gap-6 md:gap-5 lg:gap-10 xl:gap-14 md:px-5 sm:flex sm:flex-col-reverse">
-                    <div className="lg:col-span-6 sm:col-span-12">
-                      <img
-                        className="lg:h-[28rem] sm:h-[15rem]"
-                        src={trading1}
-                        alt=""
-                      />
-                    </div>
-                    <div className="lg:col-span-6 sm:col-span-12 sm:mt-10 lg:mt-0">
-                      <div>
-                        <div className="heading  text-[25px] font-semibold">
-                          <h2 className="text-[#243945] ">Divey Mahajan</h2>
-                          <div className="mt-5 leading-loose">
-                            <p className="font-[500] text-lg">
-                              Chief Executive Officer
+
+                  {leaderData.map((leader) => (
+                    <div className="lg:grid leader-revers lg:grid-cols-12  items-start sm:gap-6 md:gap-5 lg:gap-10 xl:gap-14 md:px-5 sm:flex sm:flex-col-reverse">
+                      <div className="lg:col-span-6 sm:col-span-12">
+                        <img
+                          className="lg:h-[28rem] sm:h-[15rem]"
+                          src={getFullPath(leader?.image?.filename)}
+                          alt={leader?.image?.filename}
+                        />
+                      </div>
+                      <div className="lg:col-span-6 sm:col-span-12 sm:mt-10 lg:mt-0">
+                        <div>
+                          <div className="heading  text-[25px] font-semibold">
+                            <h2 className="text-[#243945] ">{leader.name}</h2>
+                            <div className="mt-5 leading-loose">
+                              <p className="font-[500] text-lg">
+                                {leader.status}
+                              </p>
+                              <p className="font-[500] text-lg">{leader.exp}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="contant">
+                          <span>
+                            <p className="py-5 text-sm md:text-sm lg:text-base max-w-5xl font-[400] text-gray text-justify">
+                              {leader.about}
                             </p>
-                            <p className="font-[500] text-lg">
-                              Total Experience- 15 Years{" "}
-                            </p>
+                          </span>
+                          <p className="font-[500] text-lg text-[#243945] underline">
+                            Part of Career History:
+                          </p>
+                          <div className="mt-5">
+                            <ul className="list-disc ml-3 leading-loose text-base">
+                              <li>{leader.part1}</li>
+                              <li>{leader.part2}</li>
+                              <li>{leader.part3}</li>
+                              <li>{leader.part4}</li>
+                              <li>{leader.part5}</li>
+                            </ul>
                           </div>
                         </div>
                       </div>
-                      <div className="contant">
-                        <span>
-                          <p className="py-5 text-sm md:text-sm lg:text-base max-w-5xl font-[400] text-gray text-justify">
-                            Project Management, Petrochemical, Upstream Onshore
-                            and Offshore Oil & Gas, Downstream Onshore and
-                            Offshore Oil & Gas, Power Plants, Water Treatment,
-                            Infrastructure, Civil Structure.
-                          </p>
-                        </span>
-                        <p className="font-[500] text-lg text-[#243945] underline">
-                          Part of Career History:
-                        </p>
-                        <div className="mt-5">
-                          <ul className="list-disc ml-3 leading-loose text-base">
-                            <li>Kellogg Brown & Root (KBR), Singapore, </li>
-                            <li>McDermott Asia Pacific, Singapore, </li>
-                            <li>NPCC, Abu Dhabi , </li>
-                            <li>Samsung Heavy Industries, Noida, India, </li>
-                            <li>
-                              {" "}
-                              Triune Energy Services Pvt. Ltd., Delhi, India,{" "}
-                            </li>
-                            <li>Desein Pvt Limited, Delhi, India,</li>
-                          </ul>
-                        </div>
-                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
+
           {/* Faisel Tufel */}
           <div className="w-[100%]  bg-white lg:my-10 sm:my-0">
             <div className="bg-white sm:grid-cols-1">

@@ -17,6 +17,27 @@
   border-radius: 50px;
 }
 
+.leader-revers:nth-child(even){
+  display: flex;
+  flex-direction: row-reverse;
+}
+.leader-revers:nth-child(odd){
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width:480px) and (min-width:350px){
+  .leader-revers:nth-child(even){
+    display: flex;
+    flex-direction: column;
+  }
+  .leader-revers:nth-child(odd){
+    display: flex;
+    flex-direction: column;
+  }
+  
+}
+
 
 .background-image{
   background-image: url("./assets/image/gas.jpg");

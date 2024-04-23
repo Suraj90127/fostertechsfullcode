@@ -13,7 +13,6 @@ const LeaderDashboard = () => {
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [status, setStatus] = useState("");
-  const [leaderDatas, setLeaderDatas] = useState([]);
   const [exp, setExp] = useState("");
   const [part1, setPart1] = useState("");
   const [part2, setPart2] = useState("");
@@ -21,18 +20,9 @@ const LeaderDashboard = () => {
   const [part4, setPart4] = useState("");
   const [part5, setPart5] = useState("");
   const [about, setAbout] = useState("");
-  const [formData, setFormData] = useState({
-    name: "",
-    status: "",
-    exp: "",
-    part1: "",
-    part2: "",
-    part3: "",
-    part4: "",
-    part5: "",
-    about: "",
-    image: image,
-  });
+
+  const [leaderDatas, setLeaderDatas] = useState([]);
+
   const leaderData = new FormData();
   leaderData.append("name", name);
   leaderData.append("status", status);
@@ -44,14 +34,6 @@ const LeaderDashboard = () => {
   leaderData.append("part5", part5);
   leaderData.append("about", about);
   leaderData.append("image", image);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const hendelSubmit = async (e) => {
     e.preventDefault();
@@ -92,27 +74,6 @@ const LeaderDashboard = () => {
     // console.log("gggggggggggggg", file);
   };
 
-  // const leaderDatas = [
-  //   {
-  //     name: "Divey Mahajan",
-  //     status: "Chief Executive Officer",
-  //     exp: "Total Experience- 15 Years",
-  //     about:
-  //       "Project Management, Petrochemical, Upstream Onshore and Offshore Oil & Gas, Downstream Onshore and Offshore Oil & Gas, Power Plants, Water Treatment, Infrastructure, Civil Structure.",
-  //     partshistory: true,
-  //     partshistory: "Part of Career History:",
-  //     history: [
-  //       {
-  //         poin1: "Kellogg Brown & Root (KBR), Singapore,",
-  //         poin2: "McDermott Asia Pacific, Singapore,",
-  //         poin3: "NPCC, Abu Dhabi ,",
-  //         poin4: "Samsung Heavy Industries, Noida, India,",
-  //         poin5: "Triune Energy Services Pvt. Ltd., Delhi, India",
-  //       },
-  //     ],
-  //   },
-  // ];
-
   const fetchProduct = async () => {
     try {
       const data = await axios.get(
@@ -129,7 +90,6 @@ const LeaderDashboard = () => {
 
   return (
     <div>
-      {/* {console.log("lllllllllllllllllll", leaders)} */}
       {isOpen && (
         <div className="absolute lg:top-14 sm:top-[13rem] left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-gray-200 rounded-lg p-8 lg:w-[70%] sm:w-[90%] mx-4">
@@ -172,7 +132,7 @@ const LeaderDashboard = () => {
                       id="exp"
                       name="exp"
                       onChange={(e) => setExp(e.target.value)}
-                      value={GiExpander}
+                      value={exp}
                       className="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
                       placeholder="Experience"
                     />

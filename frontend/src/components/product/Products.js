@@ -14,6 +14,7 @@ import Cair_Valve_Automation_Accessories_Catelogue_compressed from "../../assets
 import "./producstyle.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { getFullPath } from "../../utils/utils";
 
 const Products = () => {
   useEffect(() => {
@@ -140,9 +141,10 @@ const Products = () => {
                       <div className="relative flex overflow-hidden text-center items-center justify-center">
                         <img
                           className="sm:w-52 w-52 lg:h-52 sm:h-28 rounded-t-lg"
-                          src={item?.image?.path}
-                          alt="product image"
+                          src={getFullPath(item?.image?.filename)}
+                          alt={item?.image?.filename}
                         />
+                        {/* {console.log("hgh", getFullPath(item?.image?.filename))} */}
                       </div>
                       {/* <div className="pt-10 lg:text-lg sm:text-base lg:text-slate-600 px-5 ">
                           <h2 className="product-title">{p.title1}</h2>

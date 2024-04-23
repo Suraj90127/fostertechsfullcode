@@ -23,7 +23,8 @@ app.use("/api/user", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/leader", leaderRoute);
 app.use("/api/team", teamRoute);
-app.use("/uploads", express.static("uploads"));
+
+app.use("/public/images", express.static("public/images"));
 
 app.listen(PORT, () => {
   console.log(`Server at running on PORT ${PORT}`);
