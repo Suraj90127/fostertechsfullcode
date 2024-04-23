@@ -1,11 +1,52 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import contactimg from "../../assets/image/Contact img.jpg";
 import "./contact.css";
+import axios from "axios";
 
 const ContactUs = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  const [formData, setFormData] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const data = await axios.post(
+        "http://localhost:4000/api/contact",
+        formData,
+        config
+      );
+
+      if (data) {
+        // naviget("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div>
@@ -71,23 +112,52 @@ const ContactUs = () => {
                 <h2>Get In Touch With Us</h2>
                 <div className="formBox pt-32">
                   <div className="inputBox w50">
-                    <input type="text" name required />
+                    <input
+                      type="text"
+                      name="fname"
+                      required={true}
+                      onChange={handleChange}
+                      value={formData.fname}
+                    />
                     <span>First Name</span>
                   </div>
                   <div className="inputBox w50">
-                    <input type="text" name required />
+                    <input
+                      type="text"
+                      name="lname"
+                      required
+                      onChange={handleChange}
+                      value={formData.lname}
+                    />
                     <span>Last Name</span>
                   </div>
                   <div className="inputBox w50">
-                    <input type="text" name required />
+                    <input
+                      type="text"
+                      name="email"
+                      required
+                      onChange={handleChange}
+                      value={formData.email}
+                    />
                     <span>Email Address</span>
                   </div>
                   <div className="inputBox w100">
-                    <textarea name required defaultValue={""} />
+                    <textarea
+                      type="text"
+                      name="message"
+                      required
+                      defaultValue={""}
+                      onChange={handleChange}
+                      value={formData.message}
+                    />
                     <span>Please enter a message</span>
                   </div>
                   <div className="inputBox w50">
-                    <input type="submit" defaultValue="Send" />
+                    <input
+                      type="submit"
+                      defaultValue="Send"
+                      onClick={handleSubmit}
+                    />
                   </div>
                 </div>
               </div>

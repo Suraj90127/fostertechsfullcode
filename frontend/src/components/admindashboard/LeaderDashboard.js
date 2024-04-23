@@ -49,7 +49,6 @@ const LeaderDashboard = () => {
         leaderData,
         config
       );
-      console.log("ddddddddddddddddd", data);
 
       if (data) {
         // naviget("/login");

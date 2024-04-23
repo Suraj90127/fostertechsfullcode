@@ -58,7 +58,7 @@ const CareerDashboard = () => {
               <IoCloseSharp />
             </button>
             <h2 className="text-2xl font-semibold mb-4">Add Job Post</h2>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="mb-4">
                 <input
                   type="text"

@@ -5,6 +5,7 @@ const authRoute = require("./routers/userRoutes");
 const productRoute = require("./routers/productRoutes");
 const leaderRoute = require("./routers/leaderRoutes");
 const teamRoute = require("./routers/teamRoutes");
+const contactRoute = require("./routers/contactRoutes");
 const cors = require("cors");
 
 const dbConnect = require("./config/dbConnection");
@@ -23,6 +24,7 @@ app.use("/api/user", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/leader", leaderRoute);
 app.use("/api/team", teamRoute);
+app.use("/api/contact", contactRoute);
 
 app.use("/public/images", express.static("public/images"));
 
