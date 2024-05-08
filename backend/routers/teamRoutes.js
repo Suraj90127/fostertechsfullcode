@@ -24,6 +24,6 @@ router.put(
   uploadPhoto.single("image"),
   updateTeam
 );
-router.delete("/delete-team/:id", authMiddleware, isAdmin, deleteTeam);
+router.delete("/delete-team/:id", deleteTeam);
 
 module.exports = router;

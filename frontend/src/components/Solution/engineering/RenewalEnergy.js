@@ -47,7 +47,8 @@ const RenewalEnergy = () => {
             </p>
             <p className="text-white lg:w-[50%] text-lg sm:hidden lg:block">
               Renewable energy offers multitudinous environmental, profitable,
-              and social benefits, including reducing hothouse gas emigrations,
+              and social benefits, including reducing{" "}
+              <span className="highlight">hothouse gas</span> emigrations,
               mollifying climate change, enhancing energy security, creating
               jobs, and promoting sustainable development
             </p>

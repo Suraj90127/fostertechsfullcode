@@ -15,10 +15,10 @@ const Nabvar = () => {
   const [subHeading, setSubHeading] = useState("");
   const [visible, setVisible] = useState(true);
   const [role, setRole] = useState(auth?.user?.role);
-  const handleChildDropdown = (ele) => {
-    const closestUl = eleRef.current.closest("ul");
-    console.log(closestUl);
-  };
+  // const handleChildDropdown = (ele) => {
+  //   const closestUl = eleRef.current.closest("ul");
+  //   console.log(closestUl);
+  // };
 
   const handelClick = () => {
     setVisible((visible) => !visible);
@@ -230,16 +230,16 @@ const Nabvar = () => {
             {/* Mobile menu */}
             <ul
               className={`
-                lg:hidden bg-white fixed w-full top-0 overflow-y-auto bottom-0 py-10 pl-10 mt-16
-                duration-500 ${open ? "right-0 z-50" : "right-[-100%]"}
-        
-              `}
+                    lg:hidden bg-white fixed w-full top-0 overflow-y-auto bottom-0 py-10 pl-10 mt-16
+                    duration-500 ${open ? "right-0 z-50" : "right-[-100%]"}
+            
+                  `}
             >
               {/* <li>
-                <Link to="/" className="inline-block py-7">
-                  Home
-                </Link>
-              </li> */}
+                    <Link to="/" className="inline-block py-7">
+                      Home
+                    </Link>
+                  </li> */}
               {Navlink.map((link) => (
                 <div>
                   <li
@@ -257,12 +257,17 @@ const Nabvar = () => {
                           heading === link.name ? "chevron-up" : "chevron-down"
                         }`}
                       ></ion-icon>
+                      {/* <ion-icon
+                        name={`${
+                          heading === link.name ? "chevron-up" : "chevron-down"
+                        }`}
+                      ></ion-icon> */}
                     </span>
                   </li>
                   <div
                     className={`
-            ${heading === link.name ? "md:hidden" : "hidden"}
-          `}
+                ${heading === link.name ? "md:hidden" : "hidden"}
+              `}
                   >
                     {/* sublinks */}
                     {link.sublinks.map((slinks) => (

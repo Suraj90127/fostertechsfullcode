@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const ProductDashboard = () => {
   const [auth, setAuth] = useAuth();
@@ -91,7 +92,19 @@ const ProductDashboard = () => {
   };
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [products]);
+
+  const deleteProduct = async (id) => {
+    // console.log("id", id);
+    try {
+      const deleteData = await axios.delete(
+        `http://localhost:4000/api/product/delete-product/${id}`
+      );
+      // console.log("object", deleteData);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   return (
     <div>
@@ -357,6 +370,19 @@ const ProductDashboard = () => {
                           <span className="project-desc">{pro.type7}</span>
                           <span className="project-desc">{pro.type8}</span>
                           <span className="project-desc">{pro.type9}</span>
+                          <div className="project-item-button">
+                            <div
+                              className="bottom-0 cursor-pointer flex text-center items-center gap-3"
+                              onClick={() => deleteProduct(pro?._id)}
+                            >
+                              <span className="text-4xl text-yellow-500 ">
+                                <AiOutlineDelete />
+                              </span>
+                              <span className="text-xl font-[600]">
+                                Delete Product
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

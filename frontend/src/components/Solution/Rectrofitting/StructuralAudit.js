@@ -276,7 +276,7 @@ const StructuralAudit = () => {
                         </h2>
                         <ul className=" space-y-1 lg:mx-10 sm:mx-0 text-gray-500 list-inside dark:text-gray-400">
                           <h2 className="py-5 text-base font-normal text-gray-900 dark:text-white underline w-full">
-                            STAGE 1 – Verification of Available Documents
+                            STAGE 1.
                           </h2>
                           <li className="flex items-center">
                             <svg
@@ -307,7 +307,7 @@ const StructuralAudit = () => {
                         </ul>
                         <ul className=" space-y-1 lg:mx-10 sm:mx-0 text-gray-500 list-inside dark:text-gray-400">
                           <h2 className="py-5 text-base font-normal text-gray-900 dark:text-white underline w-full">
-                            STAGE 2 – Verification of Available Documents
+                            STAGE 2.
                           </h2>
                           <li className="flex items-center">
                             <svg
@@ -400,7 +400,7 @@ const StructuralAudit = () => {
                         </ul>
                         <ul className=" space-y-1 lg:mx-10 sm:mx-0 text-gray-500 list-inside dark:text-gray-400">
                           <h2 className="py-5 text-base font-normal text-gray-900 dark:text-white underline w-full">
-                            STAGE 3 – Verification of Available Documents
+                            STAGE 3.
                           </h2>
                           <p>
                             In addition to visual inspection, the real strength
@@ -460,7 +460,7 @@ const StructuralAudit = () => {
                                     Cover Meter or Rebar locator
                                   </td>
                                   <td class="border border-slate-300 p-3">
-                                    Ulttrasonic Pluse Velocity text
+                                    Ulttrasonic Pluse Velocity Test
                                   </td>
                                 </tr>
                                 <tr>

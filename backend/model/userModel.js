@@ -8,7 +8,7 @@ var userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
+    // required: true,
     unique: true,
   },
   role: {
@@ -20,7 +20,7 @@ var userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 

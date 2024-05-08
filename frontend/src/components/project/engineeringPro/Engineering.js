@@ -329,8 +329,10 @@ const Engineeringpro = () => {
                       <div className=" bg-white" key={i}>
                         {/* <Link to={data.link}> */}
                         <div className="mb-4 overflow-hidden relative">
-                          <div className="absolute mx-2">
-                            <p className="text-base text-white">{data.name}</p>
+                          <div className="absolute">
+                            <p className="text-base text-white bg-blue-600 px-4 py-2 rounded-md ">
+                              {data.name}
+                            </p>
                           </div>
                           <img
                             className="w-full h-[15rem]"

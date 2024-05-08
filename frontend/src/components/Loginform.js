@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {
-  Card,
-  Input,
-  Checkbox,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
 import logo from "../assets/image/logo_up.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth";
@@ -18,7 +11,6 @@ const Loginform = () => {
   const [auth, setAuth] = useAuth();
   const [formData, setFormData] = useState({
     email: "",
-
     password: "",
   });
 
@@ -27,6 +19,7 @@ const Loginform = () => {
     setFormData({ ...formData, [name]: value });
   };
   console.log(formData);
+
   const hendelSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,15 +30,18 @@ const Loginform = () => {
       );
       // console.log("ff", data.data.user);
       if (data) {
+        alert("Login successfully");
         setAuth({
           ...auth,
           user: data.data.user,
           token: data.data.token,
         });
+
         localStorage.setItem("auth", JSON.stringify(data.data));
         naviget("/");
       }
     } catch (error) {
+      alert("Error occurred: Password Wrong");
       console.log(error);
     }
   };

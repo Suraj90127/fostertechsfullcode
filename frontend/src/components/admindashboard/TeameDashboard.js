@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { team } from "../../utils/TeamData";
 import { IoCloseSharp } from "react-icons/io5";
 import axios from "axios";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const TeameDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +74,19 @@ const TeameDashboard = () => {
   };
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [teamDatas]);
+
+  const deleteTeam = async (id) => {
+    // console.log("id", id);
+    try {
+      const deleteData = await axios.delete(
+        `http://localhost:4000/api/team/delete-team/${id}`
+      );
+      // console.log("object", deleteData);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   return (
     <div>
@@ -243,27 +256,17 @@ const TeameDashboard = () => {
                       <span className="project-name">{t.name}</span>
                       <span className="project-desc">{t.part}</span>
                       <div className="project-item-button">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
+                        <div
+                          className="bottom-0 cursor-pointer flex text-center items-center gap-3"
+                          onClick={() => deleteTeam(t?._id)}
                         >
-                          <title>star-plus-outline</title>
-                          <path d="M5.8 21L7.4 14L2 9.2L9.2 8.6L12 2L14.8 8.6L22 9.2L18.8 12H18C17.3 12 16.6 12.1 15.9 12.4L18.1 10.5L13.7 10.1L12 6.1L10.3 10.1L5.9 10.5L9.2 13.4L8.2 17.7L12 15.4L12.5 15.7C12.3 16.2 12.1 16.8 12.1 17.3L5.8 21M17 14V17H14V19H17V22H19V19H22V17H19V14H17Z" />
-                        </svg>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                        >
-                          <title>eye-plus</title>
-                          <path d="M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C12.36,19.5 12.72,19.5 13.08,19.45C13.03,19.13 13,18.82 13,18.5C13,17.94 13.08,17.38 13.24,16.84C12.83,16.94 12.42,17 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12C17,12.29 16.97,12.59 16.92,12.88C17.58,12.63 18.29,12.5 19,12.5C20.17,12.5 21.31,12.84 22.29,13.5C22.56,13 22.8,12.5 23,12C21.27,7.61 17,4.5 12,4.5M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M18,14.5V17.5H15V19.5H18V22.5H20V19.5H23V17.5H20V14.5H18Z" />
-                        </svg>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                        >
-                          <title>share-variant</title>
-                          <path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z" />
-                        </svg>
+                          <span className="text-4xl text-yellow-500 ">
+                            <AiOutlineDelete />
+                          </span>
+                          <span className="text-xl font-[600]">
+                            Delete Team
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>

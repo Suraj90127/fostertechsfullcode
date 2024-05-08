@@ -107,17 +107,13 @@ const Home = () => {
                         <div className="contant">
                           <span>
                             <p className="py-5 text-sm md:text-sm lg:text-lg max-w-5xl font-[400] text-black">
-                              Fostertech Pvt. Ltd, an Engineering and Project
+                              Fostertechs Pvt. Ltd. An Engineering and Project
                               Management Consultancy with its headquarter in New
                               Delhi, India, is a group of highly motivated,
-                              qualified and experienced technocrats. Our team
-                              has enormous experience in engineering and project
-                              management of : Fostertechs Pvt. Ltd, an
-                              ISO-9001:2016 certified company with its
-                              headquarters in New Delhi, India, is a group of
-                              highly motivated, qualified and experienced
-                              technocrats. Our team has enormous experience in
-                              engineering and project management of offshore .
+                              Qualified and experienced technocrats. Fostertechs
+                              Pvt Ltd is certified according to ISO-9001:2016
+                              and our team has a wealth of experience in
+                              engineering and project management.
                             </p>
                           </span>
                         </div>
@@ -225,7 +221,7 @@ const Home = () => {
                         </h2>
                         <Link to="/solution/engineering-genral">
                           <button className="px-10 py-2 text-lg font-normal bg-yellow-400 text-white">
-                            Explor
+                            Explore
                           </button>
                         </Link>
                       </div>
@@ -257,7 +253,7 @@ const Home = () => {
                         </h2>
                         <Link to="/solution/rectrofitting-structural-audit">
                           <button className="px-10 py-2 text-lg font-normal bg-yellow-400 text-white">
-                            Explor
+                            Explore
                           </button>
                         </Link>
                       </div>
@@ -288,7 +284,7 @@ const Home = () => {
                         <h2 className="text-white text-3xl my-4">Fabricatio</h2>
                         <Link to="/solution/fabrication-comapny-overview">
                           <button className="px-10 py-2 text-lg font-normal bg-yellow-400 text-white">
-                            Explor
+                            Explore
                           </button>
                         </Link>
                       </div>
@@ -324,7 +320,7 @@ const Home = () => {
                         </h2>
                         <Link to="/solution/wastemanagemet-inroduction">
                           <button className="px-10 py-2 text-lg font-normal bg-yellow-400 text-white">
-                            Explor
+                            Explore
                           </button>
                         </Link>
                       </div>
